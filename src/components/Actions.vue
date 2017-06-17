@@ -9,7 +9,12 @@
 <script type="text/javascript">
 	
 	export default {
-		name: 'actions'
+		name: 'actions',
+		methods: {
+			add () {
+				
+			}
+		}
 	}
 
 </script>
