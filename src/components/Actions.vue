@@ -35,31 +35,33 @@
 
 			span {
 				display: inline-block;
+				width: 48px;
+				height: 48px;
 			}
 		}
 	}
 
 	.add {
-		width: 29px;
-		height: 29px;
+		// width: 29px;
+		// height: 29px;
 		background: url('../assets/add.png') no-repeat;
 	}
 
 	.star {
-		width: 29px;
-		height: 29px;
+		// width: 29px;
+		// height: 29px;
 		background: url('../assets/star.png') no-repeat;
 	}
 
 	.star-highlight {
-		width: 29px;
-		height: 29px;
+		// width: 29px;
+		// height: 29px;
 		background: url('../assets/star-highlight.png') no-repeat;
 	}
 
 	.del {
-		width: 29px;
-		height: 29px;
+		// width: 29px;
+		// height: 29px;
 		background: url('../assets/del.png') no-repeat;
 	}
 
