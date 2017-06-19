@@ -12,8 +12,7 @@
 		name: 'actions',
 		methods: {
 			add() {
-				console.log('add');
-				console.log(this.$store.state.notes);
+				this.$store.commit('add');
 			},
 			toggle() {
 				console.log('star');
@@ -23,9 +22,14 @@
 				console.log('del');
 			}
 		},
-		data() {
-			return {
-				isStared: false
+		computed: {
+			isStared() {
+				var result = false,
+					currentNote = this.$store.state.currentNote;
+				if (currentNote && currentNote.isStared) {
+					result = true;
+				}
+				return result;
 			}
 		}
 	}

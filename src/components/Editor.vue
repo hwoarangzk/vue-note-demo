@@ -1,12 +1,17 @@
 <template>
 	<div id="editor">
-		<textarea disabled="disabled"></textarea>
+		<textarea :disabled="isEditing"></textarea>
 	</div>
 </template>
 
 <script type="text/javascript">
 	export default {
-		name: 'editor'
+		name: 'editor',
+		data() {
+			return {
+				isEditing: this.$store.state.currentNote ? false : true
+			};
+		}
 	}
 </script>
 
@@ -21,6 +26,7 @@
 			width: 100%;
 			border: none;
 			font-size: 18px;
+			padding: 10px;
 		}
 
 	}

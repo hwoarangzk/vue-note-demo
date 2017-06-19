@@ -7,12 +7,12 @@
 		<div class="notes">
 			<template v-for="(note, index) in notes">
 				<template v-if="!isAllSelected">
-					<p class="note" @click="selectNote(index, $event)" v-if="note.isStared">
+					<p class="note" :class="{editing: note.isEditing}" @click="selectNote(note, index, $event)" v-if="note.isStared">
 					<span>{{note.text}}</span>
 				</p>	
 				</template>
 				<template v-else>
-					<p class="note" @click="selectNote(index, $event)">
+					<p class="note" :class="{editing: note.isEditing}" @click="selectNote(note, index, $event)">
 					<span>{{note.text}}</span>
 				</p>
 				</template>
@@ -27,8 +27,8 @@
 	export default {
 		name: 'list',
 		methods: {
-			selectNote(index, e) {
-				console.log(index);
+			selectNote(note, index, event) {
+				this.$store.commit('select', note);
 			},
 			switch2All() {
 				this.isAllSelected = true;
@@ -42,17 +42,19 @@
 				isAllSelected: true,
 				currentNote: this.$store.state.currentNote,
 				notes: this.$store.state.notes
-				
-			}
+			};
 		},
 		computed: {
 			staredNotes() {
 				return this.$store.state.notes.filter(function(obj) {
-					return obj.isStared === true
+					return obj.isStared === true;
 				});
 			},
 			displayedNotes() {
-				return this.isAllSelected ? this.notes : this.staredNotes
+				return this.isAllSelected ? this.notes : this.staredNotes;
+			},
+			currentNoteIndex() {
+
 			}
 		}
 	}
