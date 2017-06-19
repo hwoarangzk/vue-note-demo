@@ -5,7 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		notes: [],
+		notes: [{
+			text: 'stared. this is a test. this is a test. this is a test. this is a test',
+			isStared: true
+		}, {
+			text: 'this is a test. this is a test. this is a test. this is a test',
+			isStared: false
+		}],
 		currentNote: null
 	}
 });

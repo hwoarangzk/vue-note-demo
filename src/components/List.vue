@@ -4,7 +4,19 @@
 		<div class="categorys">
 			<span class="all category" :class="{selected : isAllSelected}" @click="switch2All">All Notes</span><span class="stared category" :class="{selected: !isAllSelected}" @click="switch2Stared">Stared Notes</span>
 		</div>
-		<div class="list">
+		<div class="notes">
+			<template v-for="(note, index) in notes">
+				<template v-if="!isAllSelected">
+					<p class="note" @click="selectNote(index, $event)" v-if="note.isStared">
+					<span>{{note.text}}</span>
+				</p>	
+				</template>
+				<template v-else>
+					<p class="note" @click="selectNote(index, $event)">
+					<span>{{note.text}}</span>
+				</p>
+				</template>
+			</template>
 			
 		</div>
 	</div>
@@ -15,16 +27,32 @@
 	export default {
 		name: 'list',
 		methods: {
-			switch2All () {
+			selectNote(index, e) {
+				console.log(index);
+			},
+			switch2All() {
 				this.isAllSelected = true;
 			},
-			switch2Stared () {
+			switch2Stared() {
 				this.isAllSelected = false;
 			}
 		},
 		data() {
 			return {
-				isAllSelected: true
+				isAllSelected: true,
+				currentNote: this.$store.state.currentNote,
+				notes: this.$store.state.notes
+				
+			}
+		},
+		computed: {
+			staredNotes() {
+				return this.$store.state.notes.filter(function(obj) {
+					return obj.isStared === true
+				});
+			},
+			displayedNotes() {
+				return this.isAllSelected ? this.notes : this.staredNotes
 			}
 		}
 	}
@@ -76,6 +104,32 @@
 				&:last-child {
 					border-top-left-radius: 0;
 					border-bottom-left-radius: 0;
+				}
+			}
+		}
+
+		.notes {
+
+			margin-top: 25px;
+
+			.note {
+				height: 40px;
+				line-height: 40px;
+				overflow: hidden;
+				vertical-align: bottom;
+				padding-left: 15px;
+				padding-right: 15px;
+				background: #fff;
+				font-size: 14px;
+
+				&:hover {
+					cursor: pointer;
+					background: #f5f5f5;
+				}
+
+				&.editing {
+					background: #337ab7;
+					color: #fff;
 				}
 			}
 		}
