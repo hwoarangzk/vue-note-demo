@@ -52,9 +52,6 @@
 			},
 			displayedNotes() {
 				return this.isAllSelected ? this.notes : this.staredNotes;
-			},
-			currentNoteIndex() {
-
 			}
 		}
 	}
