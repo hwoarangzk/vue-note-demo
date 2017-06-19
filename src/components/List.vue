@@ -124,6 +124,14 @@
 				background: #fff;
 				font-size: 14px;
 
+				span {
+					display: inline-block;
+					white-space: nowrap;
+					overflow: hidden;
+					width: 270px;
+					text-overflow: ellipsis;
+				}
+
 				&:hover {
 					cursor: pointer;
 					background: #f5f5f5;

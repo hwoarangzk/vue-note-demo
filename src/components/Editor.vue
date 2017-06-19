@@ -1,16 +1,37 @@
 <template>
 	<div id="editor">
-		<textarea :disabled="isEditing"></textarea>
+		<textarea :disabled="!isEditing" v-model="text" @input="onInput"></textarea>
 	</div>
 </template>
 
 <script type="text/javascript">
 	export default {
 		name: 'editor',
-		data() {
-			return {
-				isEditing: this.$store.state.currentNote ? false : true
-			};
+		//if put isEditing in data
+		//the textarea won't get changed
+		// data() {
+		// 	return {
+		// 		isEditing: this.$store.state.currentNote ? true : false
+		// 	};
+		// }
+		//if put isEditing in computed
+		//the textarea changes when currentNote got changed
+		//why?
+		methods: {
+			onInput(event) {
+				let val = event.target.value;
+				this.$store.commit('input', val);
+			}
+		},
+		computed: {
+			isEditing() {
+				return this.$store.state.currentNote ? true : false;
+			},
+			text() {
+				var note = this.$store.state.currentNote || {},
+					text = note.text || '';
+				return text;
+			}
 		}
 	}
 </script>

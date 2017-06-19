@@ -15,11 +15,10 @@
 				this.$store.commit('add');
 			},
 			toggle() {
-				console.log('star');
-				this.isStared = !this.isStared;
+				this.$store.commit('toggle');
 			},
 			del() {
-				console.log('del');
+				this.$store.commit('del');
 			}
 		},
 		computed: {
