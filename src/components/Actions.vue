@@ -1,8 +1,8 @@
 <template>
 	<div id="actions">
-		<div id="add" class="action"><span class="add"></span></div>
-		<div id="star" class="action"><span class="star"></span></div>
-		<div id="del" class="action"><span class="del"></span></div>
+		<div id="add" class="action" @click="add"><span class="add"></span></div>
+		<div id="star" class="action" @click="toggle"><span :class="[isStared ? 'star-highlight' : 'star']"></span></div>
+		<div id="del" class="action" @click="del"><span class="del"></span></div>
 	</div>
 </template>
 
@@ -11,8 +11,21 @@
 	export default {
 		name: 'actions',
 		methods: {
-			add () {
-				
+			add() {
+				console.log('add');
+				console.log(this.$store.state.notes);
+			},
+			toggle() {
+				console.log('star');
+				this.isStared = !this.isStared;
+			},
+			del() {
+				console.log('del');
+			}
+		},
+		data() {
+			return {
+				isStared: false
 			}
 		}
 	}
