@@ -5,17 +5,10 @@
 			<span class="all category" :class="{selected : isAllSelected}" @click="switch2All">All Notes</span><span class="stared category" :class="{selected: !isAllSelected}" @click="switch2Stared">Stared Notes</span>
 		</div>
 		<div class="notes">
-			<template v-for="(note, index) in notes">
-				<template v-if="!isAllSelected">
-					<p class="note" :class="{editing: note.isEditing}" @click="selectNote(note, index, $event)" v-if="note.isStared">
-					<span>{{note.text}}</span>
-				</p>	
-				</template>
-				<template v-else>
-					<p class="note" :class="{editing: note.isEditing}" @click="selectNote(note, index, $event)">
+			<template v-for="note in displayedNotes">
+				<p class="note" :class="{editing: note.isEditing}" @click="selectNote(note, $event)">
 					<span>{{note.text}}</span>
 				</p>
-				</template>
 			</template>
 			
 		</div>
@@ -27,7 +20,7 @@
 	export default {
 		name: 'list',
 		methods: {
-			selectNote(note, index, event) {
+			selectNote(note, event) {
 				this.$store.commit('select', note);
 			},
 			switch2All() {
